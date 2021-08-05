@@ -18,12 +18,12 @@ class Search extends Component {
   };
 
   searchForBooks = debounce((query) => {
-    booksAPI.search(query).then((results) => {
+    return booksAPI.search(query).then((results) => {
       if (results && results.length > 0) {
-        // results.map((result) => {
-        //   if (result.shelf && result.shelf !== "none");
-        //   result.shelf = "none";
-        // });
+        results.map((result) => {
+          if (result.shelf && result.shelf !== "none");
+          return (result.shelf = "none");
+        });
       }
       this.setState(() => ({
         results,
@@ -32,7 +32,7 @@ class Search extends Component {
   }, 1000);
 
   render() {
-    const { books, handleChange } = this.props;
+    const { handleChange } = this.props;
     const { query, results } = this.state;
     return (
       <div className="search-books">
@@ -73,8 +73,5 @@ class Search extends Component {
     );
   }
 }
-
-const isSearched = (searchTerm) => (item) =>
-  !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
 export default Search;
