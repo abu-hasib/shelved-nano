@@ -7,15 +7,16 @@ function BookList(props) {
   console.log(books);
   return (
     <ol className="books-grid">
-      {books.map((book) => (
-        <Book
-          key={book.title}
-          book={book}
-          handleChange={handleChange}
-          handleFocus={handleFocus}
-          value={value}
-        />
-      ))}
+      {books.length > 0
+        ? books.map((book) => (
+            <Book
+              key={book.title}
+              book={book}
+              handleChange={handleChange}
+              handleFocus={handleFocus}
+            />
+          ))
+        : ""}
     </ol>
   );
 }

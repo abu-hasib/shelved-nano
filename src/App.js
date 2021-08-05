@@ -43,7 +43,7 @@ const toRead = [
   },
 ];
 
-const read = [
+const reads = [
   {
     imageLinks: {
       thumbnail:
@@ -84,14 +84,45 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false,
     books: [],
-    currentlyReading: currentReads,
-    wantToRead: toRead,
-    read,
+    currentlyReading: [],
+    wantToRead: [],
+    read: [],
     value: "none",
   };
 
   componentDidMount() {
     booksAPI.getAll().then((books) => this.setState(() => ({ books })));
+    console.log("mounting...");
+    if (localStorage.getItem("wantToRead")) {
+      let localWantToRead = JSON.parse(localStorage.getItem("wantToRead"));
+      this.setState(() => ({
+        wantToRead: localWantToRead,
+      }));
+    }
+    if (localStorage.getItem("currentlyReading")) {
+      let localCurrentlyReading = JSON.parse(
+        localStorage.getItem("currentlyReading")
+      );
+      this.setState(() => ({
+        currentlyReading: localCurrentlyReading,
+      }));
+    }
+    if (localStorage.getItem("read")) {
+      let localRead = JSON.parse(localStorage.getItem("read"));
+      this.setState(() => ({
+        read: localRead,
+      }));
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("wantToRead", JSON.stringify(this.state.wantToRead));
+    localStorage.setItem(
+      "currentlyReading",
+      JSON.stringify(this.state.currentlyReading)
+    );
+    localStorage.setItem("read", JSON.stringify(this.state.read));
+    // alert("unmounting");
   }
 
   handleFocus = (e) => {
@@ -110,6 +141,7 @@ class BooksApp extends React.Component {
   handleChange = (e, book) => {
     const { value } = e.target;
 
+    const localWantToRead = localStorage.getItem("wantToRead");
     const isInCurrentlyReading = findNewBookIndex(
       this.state.currentlyReading,
       book
@@ -122,6 +154,7 @@ class BooksApp extends React.Component {
     switch (value) {
       case "wantToRead":
         if (isInWantToRead < 0) {
+          book.shelf = "wantToRead";
           this.setState(() => ({
             wantToRead: [...this.state.wantToRead, book],
           }));
@@ -148,6 +181,7 @@ class BooksApp extends React.Component {
 
       case "currentlyReading":
         if (isInCurrentlyReading < 0) {
+          book.shelf = "currentlyReading";
           this.setState(() => ({
             currentlyReading: [...this.state.currentlyReading, book],
           }));
@@ -173,6 +207,7 @@ class BooksApp extends React.Component {
         break;
       case "read":
         if (isInRead < 0) {
+          book.shelf = "read";
           this.setState(() => ({
             read: [...this.state.read, book],
           }));
