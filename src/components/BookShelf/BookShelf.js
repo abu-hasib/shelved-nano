@@ -1,5 +1,5 @@
 import React from "react";
-import BookList from "../Books.js/BookList";
+import BookList from "../Books/BookList";
 import PropTypes from "prop-types";
 
 function BookShelf(props) {

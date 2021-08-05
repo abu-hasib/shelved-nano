@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { bool } from "prop-types";
 
 function Book(props) {
   const { book, value, handleChange, handleFocus } = props;
@@ -12,13 +12,13 @@ function Book(props) {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${book.url})`,
+              backgroundImage: `url(${book.imageLinks.thumbnail})`,
             }}
           />
           <div className="book-shelf-changer">
             <select
-              value={value}
-              onFocus={(e) => handleFocus(e)}
+              value={book.shelf}
+              // onFocus={(e) => handleFocus(e)}
               onChange={(e) => handleChange(e, book)}
             >
               <option value="move" disabled>
@@ -32,7 +32,7 @@ function Book(props) {
           </div>
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.author}</div>
+        <div className="book-authors">{book.authors}</div>
       </div>
     </li>
   );
