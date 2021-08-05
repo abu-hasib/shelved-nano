@@ -3,18 +3,13 @@ import Book from "./Book";
 import PropTypes from "prop-types";
 
 function BookList(props) {
-  const { books, handleChange, handleFocus, value } = props;
+  const { books, handleChange } = props;
   console.log(books);
   return (
     <ol className="books-grid">
       {books.length > 0
         ? books.map((book) => (
-            <Book
-              key={book.title}
-              book={book}
-              handleChange={handleChange}
-              handleFocus={handleFocus}
-            />
+            <Book key={book.title} book={book} handleChange={handleChange} />
           ))
         : ""}
     </ol>

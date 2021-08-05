@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Book(props) {
-  const { book, handleChange, handleFocus } = props;
+  const { book, handleChange } = props;
   return (
     <li>
       <div className="book">
