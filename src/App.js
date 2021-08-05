@@ -2,6 +2,7 @@ import React from "react";
 // import * as BooksAPI from './BooksAPI'
 import "./App.css";
 import BookShelf from "./components/BookShelf/BookShelf";
+import * as booksAPI from "./BooksAPI";
 
 const currentReads = [
   {
@@ -69,6 +70,10 @@ class BooksApp extends React.Component {
     read,
     value: "none",
   };
+
+  componentDidMount() {
+    booksAPI.getAll().then((books) => this.setState(() => ({ books })));
+  }
 
   handleFocus = (e) => {
     const { value } = e.target.value;
