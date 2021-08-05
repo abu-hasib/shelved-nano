@@ -20,7 +20,10 @@ class Search extends Component {
   searchForBooks = debounce((query) => {
     booksAPI.search(query).then((results) => {
       if (results && results.length > 0) {
-        results.map((result) => (result.shelf = "none"));
+        // results.map((result) => {
+        //   if (result.shelf && result.shelf !== "none");
+        //   result.shelf = "none";
+        // });
       }
       this.setState(() => ({
         results,
