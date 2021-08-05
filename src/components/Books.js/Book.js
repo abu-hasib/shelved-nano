@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Book(props) {
-  const { book } = props;
+  const { book, value, handleChange, handleFocus } = props;
   return (
     <li>
       <div className="book">
@@ -16,7 +16,11 @@ function Book(props) {
             }}
           />
           <div className="book-shelf-changer">
-            <select>
+            <select
+              value={value}
+              onFocus={(e) => handleFocus(e)}
+              onChange={(e) => handleChange(e, book)}
+            >
               <option value="move" disabled>
                 Move to...
               </option>
