@@ -16,11 +16,7 @@ function Book(props) {
             }}
           />
           <div className="book-shelf-changer">
-            <select
-              value={book.shelf}
-              // onFocus={(e) => handleFocus(e)}
-              onChange={(e) => handleChange(e, book)}
-            >
+            <select value={book.shelf} onChange={(e) => handleChange(e, book)}>
               <option value="move" disabled>
                 Move to...
               </option>

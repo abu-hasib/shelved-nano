@@ -19,14 +19,20 @@ class Search extends Component {
 
   searchForBooks = debounce((query) => {
     return booksAPI.search(query).then((results) => {
+      let updatedResults = [];
       if (results && results.length > 0) {
         results.map((result) => {
           if (result.shelf && result.shelf !== "none");
           return (result.shelf = "none");
         });
+        updatedResults = results.filter((result) => {
+          if (result.imageLinks && result.authors) {
+            return result;
+          }
+        });
       }
       this.setState(() => ({
-        results,
+        results: updatedResults,
       }));
     });
   }, 1000);
