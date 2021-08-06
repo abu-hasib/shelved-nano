@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 function BookList(props) {
   const { books, handleChange } = props;
-  console.log(books);
   return (
     <ol className="books-grid">
       {books.length > 0

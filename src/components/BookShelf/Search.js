@@ -20,10 +20,20 @@ class Search extends Component {
   searchForBooks = debounce((query) => {
     return booksAPI.search(query).then((results) => {
       let updatedResults = [];
+      let { books } = this.props;
+
       if (results && results.length > 0) {
         results.map((result) => {
-          if (result.shelf && result.shelf !== "none");
-          return (result.shelf = "none");
+          if (!result.shelf) {
+            return (result.shelf = "none");
+          }
+          return true;
+        });
+
+        results.map((result) => {
+          return books.map((book) => {
+            return result.id === book.id && (result.shelf = book.shelf);
+          });
         });
         updatedResults = results.filter(
           (result) => result.imageLinks && result.authors
