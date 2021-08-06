@@ -18,6 +18,7 @@ function BookList(props) {
 
 BookList.propTypes = {
   books: PropTypes.array.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default BookList;

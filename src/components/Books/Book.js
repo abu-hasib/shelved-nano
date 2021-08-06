@@ -38,6 +38,7 @@ function Book(props) {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default Book;

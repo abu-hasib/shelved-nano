@@ -25,11 +25,9 @@ class Search extends Component {
           if (result.shelf && result.shelf !== "none");
           return (result.shelf = "none");
         });
-        updatedResults = results.filter((result) => {
-          if (result.imageLinks && result.authors) {
-            return result;
-          }
-        });
+        updatedResults = results.filter(
+          (result) => result.imageLinks && result.authors
+        );
       }
       this.setState(() => ({
         results: updatedResults,

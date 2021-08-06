@@ -19,7 +19,6 @@ class BooksApp extends React.Component {
     currentlyReading: [],
     wantToRead: [],
     read: [],
-    value: "none",
   };
 
   componentDidMount() {
@@ -192,22 +191,16 @@ class BooksApp extends React.Component {
                       label={"Currently Reading"}
                       books={this.state.currentlyReading}
                       handleChange={this.handleChange}
-                      handleFocus={this.handleFocus}
-                      value={this.state.value}
                     />
                     <BookShelf
                       label={"Want to Read"}
                       books={this.state.wantToRead}
                       handleChange={this.handleChange}
-                      handleFocus={this.handleFocus}
-                      value={this.state.value}
                     />
                     <BookShelf
                       label={"Read"}
                       books={this.state.read}
                       handleChange={this.handleChange}
-                      handleFocus={this.handleFocus}
-                      value={this.state.value}
                     />
                   </div>
                 </div>
